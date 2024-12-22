@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Personal Cloud Storage API
+  description: API for managing personal cloud storage.
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  /clouds:
+    get:
+      summary: List cloud providers
+      operationId: listCloudProviders
+      responses:
+        '200':
+          description: A list of cloud providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      summary: Add cloud credentials
+      operationId: addCloudCredentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                credentials:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '201':
+          description: Credentials added successfully
